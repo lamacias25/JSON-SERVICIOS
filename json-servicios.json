@@ -1,0 +1,459 @@
+
+   {
+    "numeroNomina":"E001122",
+    "contrasenia":"qwert12",
+    "StoreCode":"MA"
+   }
+   
+   {
+    "success":false,
+    "msg":"El numero de nomina no existe"
+   }
+   
+   //JSON Espera exito
+   {
+    "success": true,
+    "msg":"Usuario encontrado",
+    "vendedor": {
+           "nombre":"Jose Perez",
+           "numero_nomina":"E001122",
+           "nivel":"venta_piso",
+           "configuracion": {
+                   "realiza_venta":true,
+                   "existencia_sucursale":False,
+                   "uen_visualizar":"[MUEBLES,VIU]",
+                   "menus":"['Lista de menus']"
+               }
+           }
+   }
+   
+   //Servicio #2 Configuracion de accesos Numero de nomina obligatorio, departamento y puesto opcionales 
+   // *CONSULTAR*
+   // JSON se envia
+   {
+       "numero_nomina":"E112200",
+       "departamento":"Ventas",
+       "puesto":"Vendedor",
+       "token":"ESDWEDFRTG33344EEDSDE#$$"
+   }
+   
+   //JSON Espera Fail
+   {
+       "success":false,
+       "msg":"Mensaje de error"
+   }
+   // JSON espera exito
+   {
+       "success": true,
+       "msg":"Usuario encontrado",
+       "vendedor": {
+              "nombre":"Jose Perez",
+              "numero_nomina":"E001122",
+              "nivel":"venta_piso",
+              "configuracion": {
+                       "accesos":{
+                           "realiza_venta":true,
+                           "existencia_sucursale":False,
+                           "uen_visualizar":"[MUEBLES,VIU]",
+                           "menus":"['Lista de menus']",
+                     }
+                  }
+              }
+      }
+   
+   // *GUARDAR*
+   {
+       "numero_nomina":"E112200",
+       "accesos":{
+           "realiza_venta":true,
+           "existencia_sucursale":False,
+           "uen_visualizar":['MUEBLES','VIU'],
+           "menus":['Lista de menus'],
+       }
+   }
+   
+   //JSON Se espera Exito
+   {
+       "success": true,
+       "msg":"Guardado con exito"
+   }
+   
+   //JSON Se espera Fail
+   {
+       "success": false,
+       "msg":"Error al guardar"
+   }
+   
+   //Servicio #3 Configuracion de banners
+   
+   // Se envia Guardar
+   {
+       "uen_id":"MA",
+       "vigencia_inicio":"dd-mm-aaaa",
+       "vigencia_fin":"dd-mm-aaaa",
+       "archivo": "tipo file"
+   }
+   
+   //JSON Se espera Exito
+   {
+       "success": true,
+       "msg":"Guardado con exito",
+       "promocion": {
+           "uen_id":"MA",
+           "vigencia":"dd-mm-aaaa - dd-mm-aaaa",
+           "nombre_archivo": "Nombre_del_archivo.pdf"
+       }
+   }
+   
+   //JSON Se espera Fail
+   {
+       "success": false,
+       "msg":"Error al guardar"
+   }
+   
+   // Se envia Consultar
+   {
+       "uen_id":"MA"
+   }
+   
+   // Se espera Toda la lista de los banners que tenga esa UEN
+   {
+       "banners":[
+           {
+               "uen_id":"MA",
+               "vigencia":"dd-mm-aaaa - dd-mm-aaaa",
+               "nombre_archivo": "Nombre_del_archivo.pdf"
+           },
+           {
+               "uen_id":"MA",
+               "vigencia":"dd-mm-aaaa - dd-mm-aaaa",
+               "nombre_archivo": "Nombre_del_archivo.pdf"
+           }
+       ]
+   }
+   
+   // Servicio #4  Configuración de alertas
+   
+   // Se espera lista de perfiles
+   {
+       "perfiles": [
+           {
+               "perfil_id": 1,
+               "nombre":"Administrador"
+           },{
+               "perfil_id": 2,
+               "nombre":"Vendedor"
+           }
+       ]
+   }
+   
+   // Servicio de guardado de perfiles
+   {
+       "alerta_id": 1,
+       "perfiles": [1,2]
+   }
+   
+   //JSON Se espera Exito
+   {
+       "success": true,
+       "msg":"Exito"
+   }
+   
+   // Servicio #5 Configuración de campañas
+   // Se espera lista de campañas vigentes
+   {
+       "campanias":[
+           {
+               "id":1,
+               "nombre":"Nombre",
+               "color":""
+           },
+           {
+               "id":2,
+               "nombre":"Nombre2",
+               "color":""
+           },
+       ]
+   }
+   
+   // Guardar color de campania
+   {
+       "campania_id":1,
+       "color":"#FFF123"
+   }
+   
+   // Servicio #6  Borrado de relaciones 
+   {
+       "familias": [
+           {
+               "id":1,
+               "nombre":"qwerty",
+               "lineas":[
+                   {
+                       "id":1,
+                       "nombre":"linea_1"
+                   }
+               ]
+           }
+       ]
+   }
+   
+   // Borrado de relaciones  Fechas 
+   {
+       "fechas": [
+           {
+               "id":1,
+               "nombre":"DD-MM-AAAA"
+           }
+       ]
+   }
+   // Borrado de relaciones  Campañas  
+   {
+       "campanias": [
+           {
+               "id":1,
+               "nombre":"NOmbre de campania"
+           }
+       ]
+   }
+   // Borrado de relaciones  PROGRAMAR 
+   // Se envia 
+   {
+       "uens":['MAVI','VIU','MA'],
+       "fechas":"string com fechas",
+       "campanias":"String de campañas",
+       "dia":"Dia programamdo para la eliminacion",
+       "hora":"Hora de eliminacion"
+   }  
+   //JSON Se espera Exito o fail
+   {
+       "success": true,
+       "msg":"Exito"
+   }
+   
+   // Servicio #7 Carga de PDF regalo
+   // Se envia el UEN
+   {
+       "uen_id":"MAVI"
+   }
+   
+   // Se espera lista de PDF cargados
+   {
+       "pdf_list":[
+           {
+               "id":1,
+               "nombre":"pdf.pdf",
+               "ruta":"https://rutaaccesible.com/pdf.pdf"
+           },
+           {
+               "id":2,
+               "nombre":"pdf.pdf"
+               "ruta":"https://rutaaccesible.com/pdf.pdf"
+           }
+       ]
+   }
+   
+   // Guardar
+   {
+       "uen_id":"MA",
+       "archivo":file 
+   }
+   
+   //JSON Se espera Exito o fail  true o false
+   {
+       "success": true,
+       "msg":"Exito"
+   }
+   
+   // Servicio #8 Configuracion de parametros 
+   //Modificar los carrouseles se envia el maximo de articulos por carrousel
+   {
+       "numero_carrouseles":3
+   }
+   
+   // Excluir sucursales Obtener las sucursales disponibles
+   {
+       "sucursales":[
+           {
+               "id":1,
+               "nombre":"CADI"
+           }
+       ]
+   }
+   // Excluir sucursales Obtener las sucursales excluida.
+   {
+       "sucursales":[
+           {
+               "id":1,
+               "nombre":"CADI"
+           }
+       ]
+   }
+   
+   //Excluir sucursal se envia el ID de la sucursal
+   {
+       "sucursal_id":2
+   }
+   
+   //Se espera JSON Se espera Exito o fail  true o false
+   {
+       "success": true,
+       "msg":"Exito"
+   }
+   
+   // Eliminar sucursales excluidad
+   {
+       "sucursales":[1,2,3]
+   }
+   
+   //Se espera JSON Se espera Exito o fail  true o false
+   {
+       "success": true,
+       "msg":"Exito"
+   }
+   
+   // Parametros guardar parametros generales
+   {
+       "disponibilidad":{
+           "lunes":{
+               "hora_inicio":"17:00",
+               "hora_fin":"19:00"
+           },
+           "martes":{
+               "hora_inicio":"17:00",
+               "hora_fin":"19:00"
+           }
+       },
+       "visualiza_articulos":{
+           "existencia_minima":3,
+           "sucursales_excluir":[1,4,6]
+       },
+       "visualizacion_existencia_maxima":{
+               "movil":23,
+               "escritorio":3
+       },
+       "visualizacion_etiqueta_disponible":[
+               {
+                   "numero_sucursal":23,
+                   "existencia_minima":3
+               },
+               {
+                   "numero_sucursal":23,
+                   "existencia_minima":3
+               },
+           ]
+   }
+   
+   // Servicio #9 pantalla inicial
+   // Familias y departamentos 
+   
+   {
+       "id":2,
+       "nombre":"",
+       "departamentos":[]
+   }
+   
+   //promosiones 
+   
+   {
+       "id":2,
+       "nombre":"",
+       "promosiones":[]
+   }
+   
+   // Servicio #10 Grid de productos
+   // se envia una categoria
+   {
+       "categoria":"",
+       "nivel":1
+   } 
+   
+   //Lista de producto
+   {
+       "sku":{
+           "sku":"LLLA23",
+           "nombre":"Nombre",
+           "imagen":"URL",
+           "precio_normal":12.1,
+           "precio_credito":11,
+           "existencia":1
+       }
+   }
+   
+   //Servicio #9 Detalle del producto 
+   
+   {
+       "nombre":"Nombre",
+       "imagenes":[
+           {
+               "id":2,
+               "url":"https://imagenes1.jpg"
+           },
+           {
+               "id":3,
+               "url":"https://imagenes3.jpg"
+           }
+       ],
+       "precio_normal":12.1,
+       "precio_credito":11,
+       "sku":"QWER34",
+       "exitencia_sucursal":[
+           {
+               "sucursal_id":23,
+               "nombre":"Palmas",
+               "cantidad":2,
+               "pisos":0
+           },
+           {
+               "sucursal_id":23,
+               "nombre":"Palmas",
+               "cantidad":2,
+               "pisos":0
+           }
+       ],
+       "comprados_juntos_habitualmente":[
+           {
+               "sku":"LLLA23",
+               "nombre":"Nombre",
+               "imagen":"URL",
+               "precio_normal":12.1,
+               "precio_credito":11,
+               "existencia":1
+           },
+           {
+               "sku":"LLLA23",
+               "nombre":"Nombre",
+               "imagen":"URL",
+               "precio_normal":12.1,
+               "precio_credito":11,
+               "existencia":1
+           },
+       ],
+       "propiedades":[
+           {
+               "id":1,
+               "etiqueta":"Resolucion",
+               "valor":"1366x768px"
+           }
+       ],
+       "tambien_te_puede_interesar":[
+           {
+               "sku":"LLLA23",
+               "nombre":"Nombre",
+               "imagen":"URL",
+               "precio_normal":12.1,
+               "precio_credito":11,
+               "existencia":1
+           },
+           {
+               "sku":"LLLA23",
+               "nombre":"Nombre",
+               "imagen":"URL",
+               "precio_normal":12.1,
+               "precio_credito":11,
+               "existencia":1
+           },
+       ],
+   
+   }
+   
